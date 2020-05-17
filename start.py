@@ -40,6 +40,8 @@ print(text)
 
 #elhaghe do reshte ba operatore + va ,
 #agar az virgul estefade konim yek space beine reshte ha ezafe mishavad
+#ham chenin dar amalgare + amalvand ha bayad ba ham bekhanand masalan
+#reshte ra ba adad nemitavan jam kard (vali virgul in moshkelo nadare)
 grade = 14
 print("Grade:" + str(grade))
 print("Score:", grade)
