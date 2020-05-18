@@ -4,8 +4,15 @@ import requests
 LAST_PLATFORM = None
 LAST_EPIC_NICKNAME = None
 
-def getBattleRoyalStats(platform, epic_nickname) :
+def getBattleRoyalStats(platform = None, epic_nickname = None, callback = None) :
     global LAST_PLATFORM, LAST_EPIC_NICKNAME
+
+    if platform == None or epic_nickname == None :
+        platform = input("Enter Platform (pc, psn, xbl): ")
+        if (platform not in ["pc", "psn", "xbl"]): platform = "pc"
+        print("Platform: " + platform)
+        epic_nickname = input("Enter epic nickname: ")
+
     LAST_PLATFORM = platform
     LAST_EPIC_NICKNAME = epic_nickname
 
@@ -17,14 +24,12 @@ def getBattleRoyalStats(platform, epic_nickname) :
     if response.status_code == 200:
         result = json.loads(response.content.decode('utf-8'))
         print("OK")
-        print(json.dumps(result, indent=2))
+        print(epic_nickname + ": ", end = "")
+        if "lifeTimeStats" in result :
+            print(json.dumps(result['lifeTimeStats'], indent=2))
+        else : print(json.dumps(result, indent=2))
     else : print("Failed!")
 
-def getBattleRoyalStats() :
-    platform = input("Enter Platform (pc, psn, xbl): ")
-    if (platform not in ["pc", "psn", "xbl"]): platform = "pc"
-    print("Platform: " + platform)
-    epic_nickname = input("Enter epic nickname: ")
-    getBattleRoyalStats(platform, epic_nickname)
+    if(callback != None) : callback()
 
 

@@ -1,3 +1,5 @@
+#nokte: python function overloading nadare
+#dar avaz mishe be arguman ha meghdare defalt dad
 def hello(name= "Refigh") :
     print("Salam " + name)
     print("Khubi?")
